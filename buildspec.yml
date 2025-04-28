@@ -5,18 +5,18 @@ phases:
     runtime-versions:
       java: corretto21
     commands:
-      - echo Installing Maven...
-      - apt-get update && apt-get install -y maven # Ensure Maven is installed
+      - echo Checking Maven installation...
+      - mvn --version # Debug: Verify Maven is available
   build:
     commands:
-      - echo Building, Testing and packaging the application...
+      - echo Building, Testing, and packaging the application...
       - ls -la # Debug: Check root directory
       - cd TestingApp
       - ls -la # Debug: Confirm pom.xml is here
       - mvn package -DskipTests
   post_build:
     commands:
-      - echo Build, Testing and packaging completed.
+      - echo Build, Testing, and packaging completed.
 artifacts:
   files:
     - TestingApp/target/*.jar # Adjusted for subdirectory
