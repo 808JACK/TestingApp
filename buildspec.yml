@@ -6,14 +6,21 @@ phases:
       java: corretto21
     commands:
       - echo Installing Maven...
+      - apt-get update && apt-get install -y maven # Ensure Maven is installed
   build:
     commands:
       - echo Building, Testing and packaging the application...
+      - ls -la # Debug: Check root directory
+      - cd TestingApp
+      - ls -la # Debug: Confirm pom.xml is here
       - mvn package -DskipTests
   post_build:
     commands:
       - echo Build, Testing and packaging completed.
 artifacts:
   files:
-    - target/*.jar
+    - TestingApp/target/*.jar # Adjusted for subdirectory
   discard-paths: yes
+cache:
+  paths:
+    - '/root/.m2/**/*' # Speed up builds
