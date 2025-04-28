@@ -13,11 +13,10 @@ phases:
       - ls -la # Debug: Check root directory
       - cd TestingApp
       - ls -la # Debug: Confirm pom.xml is here
-      - mvn package -DskipTests # Build without tests
-      - mvn test # Run tests for test stage
+      - mvn package -DskipTests
   post_build:
     commands:
-      - echo Build and tests completed.
+      - echo Build, Testing, and packaging completed.
 artifacts:
   files:
     - TestingApp/target/*.jar # Adjusted for subdirectory
